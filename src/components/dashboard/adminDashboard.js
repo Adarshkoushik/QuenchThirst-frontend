@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
 import SuppliersTable from "../pages/suppliersTable"
+import VehicleTypeForm from '../pages/vehicleTypeForm'
 
 export default function AdminDashboard(){
     const [suppliers, setSuppliers] = useState([]);
@@ -56,8 +57,10 @@ export default function AdminDashboard(){
     return (
         <div>
             <h3>Admin Dashboard</h3>
-            <h3>Suppliers List - {suppliers.length}</h3>
+            <h3><i>Suppliers List - {suppliers.length}</i></h3>
             <SuppliersTable suppliers={suppliers} handleApprove={handleApprove} handleRemove={handleRemove} />
+            <h3><u>Vehicle Type form</u></h3>
+            <VehicleTypeForm />
         </div>
     )
 }

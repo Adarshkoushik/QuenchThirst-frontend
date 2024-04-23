@@ -56,7 +56,7 @@ export default function SupplierDetailsForm() {
         
         validationSchema={Yup.object({
           building: Yup.string()
-            .max(15, 'Must be 15 characters or less')
+            .max(25, 'Must be 25 characters or less')
             .required('Required'),
           locality: Yup.string()
             .max(30, 'Must be 30 characters or less')
