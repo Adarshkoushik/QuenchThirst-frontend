@@ -61,7 +61,7 @@ export default function SupplierDetailsForm() {
       <Formik
         initialValues={initialValues}
         validationSchema={Yup.object({
-          building: Yup.string().max(40, 'Must be 40 characters or less').required('Required'),
+          building: Yup.string().max(60, 'Must be 40 characters or less').required('Required'),
           locality: Yup.string().max(30, 'Must be 30 characters or less').required('Required'),
           city: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
           state: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
