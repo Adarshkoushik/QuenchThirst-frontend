@@ -51,3 +51,26 @@ const setSupplierOrders = (data) => {
         payload: data 
     }
 }
+
+export const startUpdateOrder = (orderId) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.put(`http://localhost:3100/api/orders/${orderId}/fulfilled`, {} , {
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                }
+            });
+            console.log("res-",response)
+            dispatch(updateOrder(response.data._id));
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+};
+
+const updateOrder = (orderId) => {
+    return {
+        type: 'UPDATE_ORDER',
+        payload: orderId
+    };
+};

@@ -11,8 +11,7 @@ import 'react-datepicker/dist/react-datepicker.module.css'
 import { Icon } from "leaflet";
 import pin from '../../img/pin.png'
 import user1 from '../../img/user1.png'
-
-// import Map1 from "./location/map1";
+import { startUpdateOrder } from "../../actions/orders-action";
 
 
 
@@ -72,7 +71,7 @@ export default function OrdersListForSupplier() {
             }
         })();
     },[])    
-
+  
     const handleChange=(date)=>{
         setSelectedDate(date)
     }
@@ -87,13 +86,16 @@ export default function OrdersListForSupplier() {
     
         return selectedDate ? formattedOrderDate === selectedDateFormatted : true;
     });
-    
 
     useEffect(() => {
         return () => {
             dispatch(setServerErrors([]))
         }
     }, [])       
+
+    const handleIsFullFilled = (orderId) => {
+        dispatch(startUpdateOrder(orderId))
+    }
 
     return (
         <>
@@ -105,7 +107,7 @@ export default function OrdersListForSupplier() {
             />
             {filteredOrders.length === 0 ? (
                 <p><b>THERE IS NO ORDERS DATA TO DISPLAY FOR THIS SUPPLIER</b></p>
-            ):(
+            ) : (
                 <table className="table">
                 <thead>
                     <tr>
@@ -145,8 +147,9 @@ export default function OrdersListForSupplier() {
                 </tbody>
             </table>
 
+
             )}
-            
+
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Order Details</ModalHeader>
                 <ModalBody>
@@ -154,8 +157,8 @@ export default function OrdersListForSupplier() {
 
                     <MapContainer center={suppliersCoordinate} zoom={13} style={{ height: "400px" }}>
                         <TileLayer
-                           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
 
                         {/* Circle representing the radius */}
@@ -185,7 +188,7 @@ export default function OrdersListForSupplier() {
                                 );
                             })}
                         </LayerGroup>
-                    
+                   
 
                     </MapContainer>
 
@@ -197,6 +200,7 @@ export default function OrdersListForSupplier() {
                                 const formattedDate = orderDetails.orderDate
                                 return <div key={orderDetails._id}>
                                     {console.log(orderDetails)}
+                                   
                                 <p><b>VehicleType : </b> {orderDetails.lineItems.map(item=>item.vehicleTypeId?.name)}</p>
                                 <p><b>OrderType : </b> {orderDetails.lineItems.map(item=>item.orderType)}</p>
                                 <p><b>Order Date : </b> {formattedDate}</p>
@@ -212,6 +216,7 @@ export default function OrdersListForSupplier() {
                                 <p><b>Customer Name : </b>{orderDetails.customerId?.username}</p>
                                 <p><b>Customer Contact Number : </b>{orderDetails.customerId?.mobileNumber}</p>
                             </div>
+
                             })}
                         </>}
 

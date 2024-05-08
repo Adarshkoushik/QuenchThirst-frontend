@@ -112,11 +112,20 @@ export const startAcceptRequest = (id) => {
                     Authorization : localStorage.getItem('token')
                 }
             })
-            dispatch(approveRequest(response.data._id))
+            console.log("req-",response.data)
+            dispatch(approveRequest(response.data[0]._id))
+            dispatch(updateOrder(response.data[1]))
         } catch(err) {
             alert(err.message)
             console.log(err.response.data.errors)
         }
+    }
+}
+
+const updateOrder = (data) =>{
+    return {
+        type : 'UPDATED_ORDER',
+        payload : data
     }
 }
 

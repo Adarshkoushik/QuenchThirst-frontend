@@ -2,12 +2,8 @@ import React, { useContext, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { startCreateRequest } from '../../actions/request-action';
 import { VehicleTypeContext } from '../../context/VehicleTypeContext';
-//import { useAuth } from "../../context/AuthContext";
-// import 'leaflet/dist/leaflet.css'
-// import {Icon, popup} from 'leaflet'
-// import { Container } from 'react-bootstrap'
-// import pin from '../../img/pin.png'
-// import { MapContainer, TileLayer, Circle, Marker, Popup } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2"
 
 export default function RequestForm() {
     //const {user} = useAuth()
@@ -16,6 +12,21 @@ export default function RequestForm() {
     const serverErrors = useSelector((state) => {
         return state.requests.serverErrors
     })
+
+    const navigate = useNavigate()
+
+    const sweetAlertFunc = () => {
+        Swal.fire({
+            title: "Request",
+            text: "Request Added Successful",
+            icon: "success",
+            confirmButtonText: "OK"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate("/customer-dashboard")
+            }
+        })
+    }
 
     const dispatch = useDispatch()
 
@@ -55,6 +66,8 @@ export default function RequestForm() {
         }
         // Dispatch action to create request
         dispatch(startCreateRequest(formData, resetForm));
+
+        sweetAlertFunc()
         // Clear form fields after submission
         setFormData({
             vehicleTypeId: '',

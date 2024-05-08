@@ -1,3 +1,5 @@
+import { array } from "yup"
+
 const initialState = {
     data: [],
     serverErrors: []
@@ -11,30 +13,55 @@ const ordersReducer = (state = initialState, action) => {
         case 'SET_SUPPLIER_ORDERS': {
             return { ...state, data: action.payload }
         }
-        
+
         case 'SET_ERRORS': {
             return { ...state, serverErrors: action.payload }
         }
-        // case 'SET_MY_REQUESTS': {
-        //     return { ...state, data: action.payload }
-        // }
-        // case 'REMOVE_REQUEST': {
-        //     return { ...state, data: state.data.filter(ele => ele._id !== action.payload._id) }
-        // }
-        // case 'APPROVE_REQUEST': {
+
+        case 'UPDATE_ORDER' : {
+            return {
+                ...state,
+                data: state.data.map(order => {
+                    if (order._id === action.payload) {
+                        return {
+                            ...order,
+                            isFulfilled : true
+                        };
+                    }
+                    return order;
+                })
+            }
+        }
+
+        case 'UPDATED_ORDER' : {
+            console.log("action",action.payload)
+            return {
+                ...state,
+                data : [...state.data, {...action.payload}]
+                // data: state.data.map(order => {
+                //     if (order._id === action.payload) {
+                //         return {
+                //             ...order,
+                //             status: 'accepted'
+                //         };
+                //     }
+                //     return order;
+                // })
+            }
+        }
+        // case 'UPDATE_ORDER':
+        //     const updatedOrder = action.payload;
+        //     const updatedOrders = state.orders.map(order => {
+        //         if (order._id === updatedOrder._id) {
+        //             return updatedOrder;
+        //         }
+        //         return order;
+        //     });
         //     return {
         //         ...state,
-        //         data: state.data.map(request => {
-        //             if (request._id === action.payload) {
-        //                 return {
-        //                     ...request,
-        //                     status: 'accepted'
-        //                 };
-        //             }
-        //             return request;
-        //         })
-        //     }
-        // }
+        //         orders: updatedOrders
+        //     };
+        
         default: {
             return { ...state }
         }
