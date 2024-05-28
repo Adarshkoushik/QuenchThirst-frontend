@@ -86,6 +86,7 @@ export default function HandleRequests() {
                             <label><b>Order-Type:</b></label>
                             <input
                                 type="text" 
+                                placeholder="search order-type...."
                                 className="form-control"
                                 value={orderTypeSearch} 
                                 onChange={(e)=>setOrderTypeSearch(e.target.value)}
@@ -97,6 +98,7 @@ export default function HandleRequests() {
                             <label><b>Purpose:</b></label>
                             <input
                                 type='text' 
+                                placeholder="search purpose...."
                                 className="form-control"
                                 value={purposeSearch}
                                 onChange={(e)=>setPurposeSearch(e.target.value)}

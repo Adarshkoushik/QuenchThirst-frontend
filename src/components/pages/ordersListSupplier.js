@@ -153,7 +153,17 @@ export default function OrdersListForSupplier() {
 
     return (
         <>
-            <div  style={{ backgroundImage: `url(${water2})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+            <div  style={{ 
+                backgroundImage: `url(${water2})`, 
+                backgroundSize: 'cover', 
+                backgroundRepeat: 'no-repeat', 
+                backgroundPosition: 'center',
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                color: 'black' 
+                }}>
                 <div className="container mt-4">
                     <h3>Orders Details</h3>
                     <DatePicker 
