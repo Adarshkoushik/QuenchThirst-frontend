@@ -1,5 +1,3 @@
-// import { array } from "yup"
-
 const initialState = {
     data: [],
     totalPages:1,
@@ -39,29 +37,8 @@ const ordersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data : [...state.data, {...action.payload}]
-                // data: state.data.map(order => {
-                //     if (order._id === action.payload) {
-                //         return {
-                //             ...order,
-                //             status: 'accepted'
-                //         };
-                //     }
-                //     return order;
-                // })
             }
         }
-        // case 'UPDATE_ORDER':
-        //     const updatedOrder = action.payload;
-        //     const updatedOrders = state.orders.map(order => {
-        //         if (order._id === updatedOrder._id) {
-        //             return updatedOrder;
-        //         }
-        //         return order;
-        //     });
-        //     return {
-        //         ...state,
-        //         orders: updatedOrders
-        //     };
         
         default: {
             return { ...state }

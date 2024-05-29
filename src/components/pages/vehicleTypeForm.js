@@ -1,15 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import { Formik, FieldArray, Form, Field, ErrorMessage } from 'formik';
 import '../../style.css'
 import * as Yup from 'yup';
 import axios from 'axios';
 import { Button, FormGroup, FormLabel } from 'react-bootstrap';
+import { VehicleTypeContext } from '../../context/VehicleTypeContext';
+import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
+
 
 export default function VehicleTypeForm(){
 
+  const { vehicleTypeDispatch } = useContext(VehicleTypeContext);
+
     const [serverErrors, setServerErrors] = useState([]);
     const [selectedPurposes, setSelectedPurposes] = useState({});
-
+    const navigate = useNavigate()
     const initialValues = {
         name: '',
         capacity: '',
@@ -21,6 +27,19 @@ export default function VehicleTypeForm(){
         ]
     };
 
+    const sweetAlertFunc = () => {
+      Swal.fire({
+          title: "VehicleType Price Details",
+          text: "Price Detail Added Successfully",
+          icon: "success",
+          confirmButtonText: "OK"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              navigate("/price-details")
+          }
+      })
+  }
+
     const handleSubmit = async (values, {resetForm}) => {
         try {
             const response = await axios.post('http://localhost:3100/api/vehicleType', values,{
@@ -29,6 +48,8 @@ export default function VehicleTypeForm(){
                 }
             });
             console.log(response.data);
+            vehicleTypeDispatch({type:"ADD_VEHICLE_TYPE",payload:response.data})
+            sweetAlertFunc()
             resetForm()
         } catch (error) {
             console.error(error);

@@ -26,6 +26,7 @@ const setVehicleType = (data) => {
 }
 
 
+
 export const startRemoveVehicleType = (id) => {
   return async (dispatch) => {
       try {
@@ -43,9 +44,9 @@ export const startRemoveVehicleType = (id) => {
   }
 }
 
-const removeVehicleType = (vehicleType) => {
+const removeVehicleType = (data) => {
   return {
       type: 'REMOVE_VEHICLE_TYPE',
-      payload: vehicleType
+      payload: data
   }
 }
