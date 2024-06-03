@@ -34,7 +34,7 @@ export default function SupplierDashboard(){
                 <p>Loading...</p>
             ) : supplierData ? (
                 <>
-                    <VehicleForm /><br />
+                    {/* <VehicleForm /><br /> */}
                     <VehicleTable /> 
                 </>
                 
