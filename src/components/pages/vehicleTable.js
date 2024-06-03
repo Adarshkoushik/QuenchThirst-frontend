@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useEffect, useState, useContext } from 'react';
 import { VehicleTypeContext } from '../../context/VehicleTypeContext';
 import Card from './card' 
+import '../../vehicleForm.css';
 
 export default function VehicleTable() {
     const [vehicles, setVehicles] = useState([]);
