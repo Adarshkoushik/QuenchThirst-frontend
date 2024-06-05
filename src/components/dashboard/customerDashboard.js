@@ -1,12 +1,10 @@
-import React,{ useEffect, useReducer, useContext } from "react";
+import React,{ useEffect, useReducer } from "react";
 import axios from 'axios'
-//import OrdersListForCustomer from "../pages/ordersListCustomer";
 import RequestForm from "../pages/requestForm";
-//import RequestListForCustomer from "../pages/requestsListCustomer";
 import Map from "../pages/location/map";
 import mapLocationReducer from '../../reducers/suppliersMap-reducer'
 import { MapLocationContext } from "../../context/MapContext";
-// import login from '../../img/login.jpg'
+
 
 export default function CustomerDashboard(){
 
@@ -33,7 +31,6 @@ export default function CustomerDashboard(){
       },[])
     
     return (
-      // <div className="customer-dashboard" style={{ backgroundImage: `url(${login})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div>
             <h3>Customer Dashboard</h3>
             <MapLocationContext.Provider value={{mapLocations, mapLocationDispatch}}>
@@ -43,7 +40,5 @@ export default function CustomerDashboard(){
                 </>    
             </MapLocationContext.Provider>
         </div>
-      // </div>
-        
     )
 }

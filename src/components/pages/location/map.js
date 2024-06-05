@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
-import leaflet from 'leaflet'
 import { MapContainer, TileLayer, Circle, Marker, Popup } from 'react-leaflet'
 import { useAuth } from '../../../context/AuthContext'
 import { MapLocationContext } from '../../../context/MapContext'
@@ -11,7 +10,7 @@ import user1 from '../../../img/user1.png'
 
 export default function Map(){
   const {user}=useAuth()
-  console.log("user-",user)
+  //console.log("user-",user)
   // console.log("user",user.location.coordinates)
 
   const {mapLocations}=useContext(MapLocationContext)
@@ -37,19 +36,12 @@ export default function Map(){
     console.log("userCenter-",userCenter)
     if(userCenter){
       setCenter(reverseLatLon(userCenter))
-      // setCenter(userCenter)
     }
   },[user])
 
-
-  // const [center, setCenter]=useState([coordinates[1],coordinates[0]])
   const [center, setCenter]=useState(null)
   console.log("center-", center)
 
-  
-  
-
-  
   if(!center || !mapLocations){
     return <div>Loading...</div>
   }
@@ -75,7 +67,6 @@ export default function Map(){
                         <Popup>
                                 Supplier
                         </Popup>                    
-                            {/* <Popup><Link to={`/spaceBookingPage/${space._id}`}>{space.title}</Link></Popup> */}
                         </Marker>
                     ))}
                    <Marker position={center} icon={userMarker} >

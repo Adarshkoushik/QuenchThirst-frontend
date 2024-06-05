@@ -3,7 +3,6 @@ import { useState } from "react"
 import { useEffect } from "react"
 import SuppliersTable from "../pages/suppliersTable"
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-import VehicleTypeForm from "../pages/vehicleTypeForm";
 
 export default function AdminDashboard(){
     const [suppliers, setSuppliers] = useState([])
