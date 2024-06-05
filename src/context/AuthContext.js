@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react'
 
 const AuthContext = createContext() 
 
+//custom hook
 export const useAuth = () => {
     return useContext(AuthContext)
 }

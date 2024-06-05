@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import LoginForm from './components/registrationAndLogin/loginForm'
 import Account from './components/pages/account';
@@ -17,9 +17,9 @@ import ShowPriceDetails from './components/pages/showPriceDetails';
 import vehicleTypeReducer from './reducers/vehicleTypeReducer';
 import RequestListForCustomer from './components/pages/requestsListCustomer';
 import { VehicleTypeContext } from './context/VehicleTypeContext';
-import { startGetRequests, startGetMyRequests } from './actions/request-action';
-import { startGetCustomerOrders, startGetSupplierOrders } from './actions/orders-action';
-import { useDispatch } from 'react-redux';
+// import { startGetMyRequests } from './actions/request-action';
+// import { startGetCustomerOrders, startGetSupplierOrders } from './actions/orders-action';
+//import { useDispatch } from 'react-redux';
 import Success from './components/pages/success';
 import Failure from './components/pages/failure';
 import Header from './headers/headers'
@@ -33,7 +33,7 @@ import CustomerPreviousOrders from './components/pages/customerPreviousOrders';
 import SupplierPreviousOrders from './components/pages/supplierPreviousOrders';
 
 function App() {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const { handleLogin, handleLogout } = useAuth();
   const [vehicleTypes, vehicleTypeDispatch] = useReducer(vehicleTypeReducer, { data: [], serverErrors: [] });
   const [login, setLogin] = useState(false);
@@ -51,14 +51,14 @@ function App() {
           }
         });
         handleLogin(response.data);
-        if (response.data?.role === 'customer') {
-          // dispatch(startGetRequests());
-          dispatch(startGetCustomerOrders());
-        }
-        if (response.data?.role === 'supplier') {
-          dispatch(startGetMyRequests());
-          dispatch(startGetSupplierOrders());
-        }
+        // if (response.data?.role === 'customer') {
+        //   // dispatch(startGetRequests());
+        //   //dispatch(startGetCustomerOrders());
+        // }
+        // if (response.data?.role === 'supplier') {
+        //   //dispatch(startGetMyRequests());
+        //   //dispatch(startGetSupplierOrders());
+        // }
       })();
     }
   }, []);
