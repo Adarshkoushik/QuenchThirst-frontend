@@ -73,6 +73,7 @@ export default function RequestListForCustomer() {
                             <input
                                 type="text" 
                                 className="form-control"
+                                placeholder="Order-Type Search........"
                                 value={orderTypeSearch} 
                                 onChange={(e)=>setOrderTypeSearch(e.target.value)}
                             />
@@ -84,6 +85,7 @@ export default function RequestListForCustomer() {
                             <input
                                 type='text' 
                                 className="form-control"
+                                placeholder="Purpose Search........"
                                 value={purposeSearch}
                                 onChange={(e)=>setPurposeSearch(e.target.value)}
                             />
