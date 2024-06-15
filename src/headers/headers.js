@@ -11,17 +11,6 @@ const Header = ({ handleLogout, isAuthenticated }) => {
     const { user } = useAuth()
     return (
         <Navbar bg="dark" variant="dark" expand="lg" >
-            {/* <Link to="/" className="link-style">
-              <img
-                alt="logo"
-                src={logo}
-                style={{
-                  height: 75,
-                  width: 75,
-                }}
-              />
-              &nbsp; Resortify
-            </Link> */}
             <Navbar.Brand as={Link} to="/login-success">
                 <img src={logo} alt="Logo" style={{ height: '30px', marginRight: '10px' }} />
                 QT APP
