@@ -28,8 +28,8 @@ export default function OrdersListForSupplier() {
     const [modal, setModal] = useState(false);
     const dispatch = useDispatch()
 
-    const {user}=useAuth()
-    console.log("know_user-", user)
+    // const {user}=useAuth()
+    // console.log("know_user-", user)
 
     const orders = useSelector((state) => {        
         return state.orders

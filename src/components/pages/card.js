@@ -24,7 +24,7 @@ const Card = ({ vehicle, vehicleTypes, onDelete }) => {
     };
 
     return (
-        <div className="card">
+        <div className="card" >
             <h3><b>{vehicle.vehicleNumber}</b></h3>
             <h6><b>Vehicle Type : </b>{typeName}</h6>
             <div className="actions">
