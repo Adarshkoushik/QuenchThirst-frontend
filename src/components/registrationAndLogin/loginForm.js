@@ -20,7 +20,7 @@ export default function LoginForm(props) {
         password: '',
     };
 
-    // Define the validation schema using Yup
+    // Validation schema using Yup
     const loginValidationSchema = Yup.object().shape({
         email: Yup.string()
             .email('Invalid email Id')
@@ -56,8 +56,6 @@ export default function LoginForm(props) {
 
         } catch (error) {
             console.log(error)
-            //setServerErrors(Array.isArray(error.response?.data?.error) ? error.response.data.error : [error.response.data.error]);
-            //setServerErrors(error.response.data)
             setServerErrors(
                 Array.isArray(error.response?.data?.errors)
                   ? error.response.data.errors.map((error) => error.msg)
@@ -67,7 +65,6 @@ export default function LoginForm(props) {
     }
 
     return (
-        // <div className="login-container" style={{ backgroundColor: '#ADD8E6' }}> {/* Apply the blue background color */}
         <div className="login-container"  style={{ backgroundColor: '#ADD8E6' }}> {/* Apply the login-container class */}
             <div className="spacer"></div> {/* Add a spacer div for space */}
             <div className="loginForm"> {/* Apply the loginForm class */}
@@ -118,7 +115,5 @@ export default function LoginForm(props) {
                 </Formik>
             </div>
         </div>
-        // </div>
     )
-
 }
