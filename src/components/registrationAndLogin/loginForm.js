@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Yup from 'yup';
 import axios from 'axios'
 import '../../login.css' 
@@ -14,11 +14,23 @@ export default function LoginForm(props) {
     const [serverErrors, setServerErrors] = useState([]);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { handleLogin } = useAuth()
+    const {user, handleLogin } = useAuth()
     const initialValues = {
         email: '',
         password: '',
     };
+
+    useEffect(() => {
+        if (user) {
+            if (user.role === 'customer') {
+                navigate('/customer-dashboard', { replace: true });
+            } else if (user.role === 'supplier') {
+                navigate('/supplier-dashboard', { replace: true });
+            } else if (user.role === 'admin') {
+                navigate('/admin-dashboard', { replace: true });
+            }
+        }
+    }, [user, navigate]);
 
     // Validation schema using Yup
     const loginValidationSchema = Yup.object().shape({
