@@ -9,9 +9,11 @@ import logo from '../img/logo.png'
 const Header = ({ handleLogout, isAuthenticated }) => {
     const navigate = useNavigate()
     const { user } = useAuth()
+
+    
     return (
         <Navbar bg="dark" variant="dark" expand="lg" >
-            <Navbar.Brand as={Link} to="/login-success">
+            <Navbar.Brand as={Link} to={isAuthenticated ? "/login-success" : "/"}>
                 <img src={logo} alt="Logo" style={{ height: '30px', marginRight: '10px' }} />
                 QT APP
             </Navbar.Brand>
